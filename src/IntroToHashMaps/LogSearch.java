@@ -1,6 +1,26 @@
 package IntroToHashMaps;
 
-public class LogSearch {
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+
+import javax.swing.JButton;
+
+public class LogSearch implements ActionListener {
+	private JFrame frame = new JFrame();
+	private JPanel panel = new JPanel();
+	private JButton add = new JButton();
+	private JButton search_ID = new JButton();
+	private JButton view = new JButton();
+	HashMap<Integer, String> search = new HashMap<Integer, String>();
+	
+	public LogSearch() {
+		
+	}
   /* 
 	 * Crate a HashMap of Integers for the keys and Strings for the values.
 	 * Create a GUI with three buttons. 
@@ -28,4 +48,25 @@ public class LogSearch {
 	 * 				is not in the list. 
 	 *
 	 * */
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource().equals(add)) {
+			Integer entry = Integer.parseInt(JOptionPane.showInputDialog("Enter an ID number"));
+			String name = JOptionPane.showInputDialog("Enter a name");
+			search.put(entry, name);
+		}
+		if (e.getSource().equals(search_ID)) {
+			Integer entry = Integer.parseInt(JOptionPane.showInputDialog("Enter an ID number"));
+			for (int i=0; i < search.size(); i++) {
+				if (search.(i) == entry) {
+					
+				}
+			}
+		}
+		
+		
+	}
+	
 }
