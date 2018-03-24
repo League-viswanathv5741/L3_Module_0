@@ -13,13 +13,29 @@ import javax.swing.JButton;
 public class LogSearch implements ActionListener {
 	private JFrame frame = new JFrame();
 	private JPanel panel = new JPanel();
-	private JButton add = new JButton();
-	private JButton search_ID = new JButton();
-	private JButton view = new JButton();
+	private JButton add = new JButton("Add member");
+	private JButton search_ID = new JButton("Search member");
+	private JButton view = new JButton("View members");
+	private JButton remove = new JButton("Delete a member");
 	HashMap<Integer, String> search = new HashMap<Integer, String>();
 	
-	public LogSearch() {
+	public static void main(String[] args) {
+		LogSearch test = new LogSearch();
 		
+	}
+	
+	public LogSearch() {
+		panel.add(add);
+		panel.add(search_ID);
+		panel.add(view);
+		panel.add(remove);
+		frame.add(panel);
+		frame.setVisible(true);
+		frame.pack();
+		add.addActionListener(this);
+		search_ID.addActionListener(this);
+		view.addActionListener(this);
+		remove.addActionListener(this);
 	}
   /* 
 	 * Crate a HashMap of Integers for the keys and Strings for the values.
@@ -58,11 +74,33 @@ public class LogSearch implements ActionListener {
 			search.put(entry, name);
 		}
 		if (e.getSource().equals(search_ID)) {
+			String format = "";
 			Integer entry = Integer.parseInt(JOptionPane.showInputDialog("Enter an ID number"));
-			for (int i=0; i < search.size(); i++) {
-				if (search.(i) == entry) {
-					
-				}
+			if (!(search.get(entry) == null)) {
+				format = search.get(entry);
+				JOptionPane.showMessageDialog(null, format);
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "No such person exists.");
+			}
+			
+		}
+		if (e.getSource().equals(view)) {
+			String format = "";
+			for (int a: search.keySet()) {
+				format += "ID: " + a + " Name: " + search.get(a) + "\n";
+			}
+			JOptionPane.showMessageDialog(null, format);
+		}
+		if (e.getSource().equals(remove)) {
+			String format = "";
+			int size = search.size();
+			Integer ID = Integer.parseInt(JOptionPane.showInputDialog("Enter the ID of the person to be removed"));
+			for (int a: search.keySet()) {
+				search.remove(ID);
+			}
+			if (!(search.size() < size)) {
+				JOptionPane.showMessageDialog(null, "There is no one with this ID");
 			}
 		}
 		
